@@ -1,9 +1,11 @@
 import Banner from "../components/Home/Banner";
+ 
 
 function Home() {
   return (
     <div>
       <Banner />
+      
     </div>
   );
 }

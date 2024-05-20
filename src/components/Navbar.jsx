@@ -1,34 +1,29 @@
 import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 
 function Navbar() {
   const { user, logOut } = useAuth();
- 
 
-  const [onlineUser, setOnlineUser] = useState({
-    name: "",
-    email: "",
-  });
+  // eslint-disable-next-line no-unused-vars
+  const [onlineUser, setOnlineUser] = useState(null);
 
   useEffect(() => {
     if (user) {
       setOnlineUser({
-        name: user.displayName || '',
-        email: user.email || '',
+        name: user.displayName || "",
+        email: user.email || "",
       });
     } else {
       setOnlineUser({
-        name: '',
-        email: '',
+        name: "",
+        email: "",
       });
     }
   }, [user]);
-
-  
-
- 
-
+const handleLogOut = async()=>{
+  await   logOut();
+}
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -59,12 +54,16 @@ function Navbar() {
             <li>
               <Link to="/about">About</Link>
             </li>
-            <li>
+            {
+              user && <li>
               <Link to="/dashboard">DashBoard</Link>
             </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+            }
+           {
+            !user &&  <li>
+            <Link to="/login">Login</Link>
+          </li>
+           }
             <li>
               <Link to="/register">Register</Link>
             </li>
@@ -80,12 +79,16 @@ function Navbar() {
           <li>
             <Link to="/about">About</Link>
           </li>
-          <li>
+          {
+            user && <li>
             <Link to="/dashboard">DashBoard</Link>
           </li>
-          <li>
+          }
+          {
+            !user && <li>
             <Link to="/login">Login</Link>
           </li>
+          }
           <li>
             <Link to="/register">Register</Link>
           </li>
@@ -93,7 +96,10 @@ function Navbar() {
       </div>
       <div className="navbar-end">
         {user ? (
-          <button onClick={()=> logOut()} className="btn">
+          <button
+            onClick={handleLogOut}
+            className="btn"
+          >
             Logout
           </button>
         ) : (

@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom"
+ 
 
 function DashboardLayout() {
   return (
@@ -17,6 +18,9 @@ function DashboardLayout() {
         <li><a>Sidebar Item 2</a></li>
         
       </ul>
+      <div>
+     
+      </div>
     </div>
   </div>
   )

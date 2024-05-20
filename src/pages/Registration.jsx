@@ -1,26 +1,25 @@
-import {   useState } from "react";
-GoogleLogin
-import { Link  } from "react-router-dom";
- 
+import { useEffect, useState } from "react";
+GoogleLogin;
+import { Link, useNavigate } from "react-router-dom";
+
 import GoogleLogin from "../components/login-registration/GoogleLogin";
 import useAuth from "../hooks/useAuth";
 
 const Registration = () => {
-  const {createUser,user} = useAuth();
- 
-  const [passMatch, setPassMatch] = useState(true);
- 
- 
- 
+  const { createUser, user } = useAuth();
 
-  const handleSUbmit = (e) => {
+  const [passMatch, setPassMatch] = useState(true);
+  const navigate = useNavigate();
+
+  const from = location?.state?.from?.pathname || "/";
+
+  const handleSUbmit = async (e) => {
     e.preventDefault();
 
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     const confirm_password = form.confirm_password.value;
-
     if (password !== confirm_password) {
       setPassMatch(false);
     }
@@ -28,11 +27,15 @@ const Registration = () => {
     console.log(email, password, confirm_password);
 
     if (password === confirm_password) {
-       createUser(email,password)
-       console.log(user)
+      await createUser(email, password);
+      console.log(user);
     }
   };
-
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [user, navigate, from]);
   return (
     <form onSubmit={handleSUbmit} className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">

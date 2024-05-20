@@ -1,20 +1,30 @@
-import { Link  } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../components/login-registration/GoogleLogin";
 import useAuth from "../hooks/useAuth";
- GoogleLogin
+import { useEffect } from "react";
+GoogleLogin;
 
 const Login = () => {
-  const {signIn,user}  = useAuth();
+  const { signIn, user } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
   const handleSUbmit = async (e) => {
     e.preventDefault();
 
     const form = e.target;
- 
+
     const email = form.email.value;
     const password = form.password.value;
-      signIn(email,password)
-    console.log(user);
+    await signIn(email, password);
   };
+
+  useEffect(() => {
+    if (user) {
+      //check
+      navigate(from,{  replace: true });
+    }
+  }, [user, from, navigate]);
 
   return (
     <form onSubmit={handleSUbmit} className="hero min-h-screen bg-base-200">
