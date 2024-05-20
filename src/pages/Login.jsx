@@ -1,8 +1,10 @@
 import { Link  } from "react-router-dom";
 import GoogleLogin from "../components/login-registration/GoogleLogin";
+import useAuth from "../hooks/useAuth";
  GoogleLogin
 
 const Login = () => {
+  const {signIn,user}  = useAuth();
   const handleSUbmit = async (e) => {
     e.preventDefault();
 
@@ -10,8 +12,8 @@ const Login = () => {
  
     const email = form.email.value;
     const password = form.password.value;
-
-    console.log(email, password);
+      signIn(email,password)
+    console.log(user);
   };
 
   return (
