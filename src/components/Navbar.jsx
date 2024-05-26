@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
 function Navbar() {
-  const { user, logOut } = useAuth();
+  const { user, logOut,loading } = useAuth();
 
   // eslint-disable-next-line no-unused-vars
   const [onlineUser, setOnlineUser] = useState(null);
@@ -24,8 +25,11 @@ function Navbar() {
 const handleLogOut = async()=>{
   await   logOut();
 }
+if(loading){
+  return <LoadingSpinner/>
+}
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-orange-700 text-white ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -46,7 +50,7 @@ const handleLogOut = async()=>{
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-black"
           >
             <li>
               <Link to="/">Home</Link>
@@ -71,8 +75,8 @@ const handleLogOut = async()=>{
         </div>
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+      <div className="navbar-center hidden lg:flex ">
+        <ul className="menu menu-horizontal px-1  ">
           <li>
             <Link to="/">Home</Link>
           </li>

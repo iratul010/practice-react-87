@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="footer p-10 bg-neutral text-neutral-content">
+    <footer className="footer p-10 bg-orange-900  text-neutral-content">
       <aside>
         <svg
           width="50"

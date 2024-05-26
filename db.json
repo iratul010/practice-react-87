@@ -1,0 +1,171 @@
+{
+  "recipes": [
+    {
+      "id": "1",
+      "title": "Spaghetti Carbonara 2",
+      "price": 12.99,
+      "description": "A classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.",
+      "image": "https://images.pexels.com/photos/2878745/pexels-photo-2878745.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "Thai"
+    },
+    {
+      "id": "2",
+      "title": "Chicken Tikka Masala",
+      "price": 15.99,
+      "description": "Grilled chunks of chicken enveloped in a creamy, spiced tomato sauce.",
+      "image": "https://images.pexels.com/photos/4871284/pexels-photo-4871284.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+      "category": "Indian"
+    },
+    {
+      "id": "3",
+      "title": "Sushi Platter",
+      "price": 24.99,
+      "description": "A variety of fresh sushi including nigiri, sashimi, and rolls.",
+      "image": "https://images.pexels.com/photos/6605645/pexels-photo-6605645.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+      "category": "Japanese"
+    },
+    {
+      "id": "4",
+      "title": "Tacos al Pastor",
+      "price": 10.99,
+      "description": "Flavorful marinated pork served on small corn tortillas with pineapple and onions.",
+      "image": "https://images.pexels.com/photos/2842138/pexels-photo-2842138.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "Mexican"
+    },
+    {
+      "id": "5",
+      "title": "Pad Thai",
+      "price": 11.99,
+      "description": "A stir-fried rice noodle dish with shrimp, tofu, peanuts, and tamarind sauce.",
+      "image": "https://images.pexels.com/photos/6607383/pexels-photo-6607383.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "Thai"
+    },
+    {
+      "id": "6",
+      "title": "Beef Wellington",
+      "price": 29.99,
+      "description": "Tender beef filet wrapped in puff pastry with duxelles and prosciutto.",
+      "image": "https://images.pexels.com/photos/10045887/pexels-photo-10045887.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "British"
+    },
+    {
+      "id": "7",
+      "title": "Falafel Wrap",
+      "price": 8.99,
+      "description": "Crispy falafel balls wrapped in a pita with hummus, tahini, and fresh vegetables.",
+      "image": "https://images.pexels.com/photos/8983407/pexels-photo-8983407.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "Middle Eastern"
+    },
+    {
+      "id": "8",
+      "title": "French Onion Soup",
+      "price": 7.99,
+      "description": "A savory soup made with caramelized onions, beef broth, and topped with melted cheese.",
+      "image": "https://images.pexels.com/photos/6275165/pexels-photo-6275165.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "French"
+    },
+    {
+      "id": "9",
+      "title": "Margherita Pizza",
+      "price": 13.99,
+      "description": "Classic pizza topped with fresh tomatoes, mozzarella cheese, and basil.",
+      "image": "https://images.pexels.com/photos/6210451/pexels-photo-6210451.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "Italian"
+    },
+    {
+      "id": "10",
+      "title": "Vegetable Stir Fry",
+      "price": 9.99,
+      "description": "A mix of fresh vegetables stir-fried with soy sauce and served over rice.",
+      "image": "https://images.pexels.com/photos/5865760/pexels-photo-5865760.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "Chinese"
+    },
+    {
+      "id": "11",
+      "title": "Butter Chicken",
+      "price": 16.99,
+      "description": "Tender chicken cooked in a rich, creamy tomato gravy.",
+      "image": "https://images.pexels.com/photos/18411445/pexels-photo-18411445/free-photo-of-salad-with-bread.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load"
+    },
+    {
+      "id": "12",
+      "title": "Rogan Josh",
+      "price": 17.99,
+      "description": "A flavorful lamb curry with a blend of spices and a tomato-based sauce.",
+      "image": "https://images.pexels.com/photos/5490150/pexels-photo-5490150.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "Indian"
+    },
+    {
+      "id": "13",
+      "title": "Tempura",
+      "price": 14.99,
+      "description": "Lightly battered and deep-fried seafood and vegetables.",
+      "image": "https://images.pexels.com/photos/1309595/pexels-photo-1309595.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "Japanese"
+    },
+    {
+      "id": "14",
+      "title": "Ramen",
+      "price": 12.99,
+      "description": "A hearty Japanese noodle soup with meat, vegetables, and broth.",
+      "image": "https://images.pexels.com/photos/13696727/pexels-photo-13696727.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load",
+      "category": "Japanese"
+    },
+    {
+      "id": "147",
+      "title": "test1111",
+      "price": "7878",
+      "category": "Mexican",
+      "descrition": "test"
+    },
+    {
+      "id": "121212",
+      "title": "Test ",
+      "price": "121",
+      "category": "Mexican",
+      "description": "test descittion"
+    }
+  ],
+  "categories": [
+    {
+      "title": "Italian",
+      "id": "2314"
+    },
+    {
+      "title": "Indian",
+      "id": "8569"
+    },
+    {
+      "title": "Japanese",
+      "id": "5680"
+    },
+    {
+      "title": "Mexican",
+      "id": "e23f"
+    },
+    {
+      "title": "Thai",
+      "id": "970b"
+    },
+    {
+      "title": "British",
+      "id": "b069"
+    },
+    {
+      "title": "Middle Eastern",
+      "id": "b460"
+    },
+    {
+      "title": "French",
+      "id": "8c74"
+    },
+    {
+      "title": "Chinese",
+      "id": "c33b"
+    },
+    {
+      "title": "American",
+      "id": "d05a"
+    }
+  ]
+}
