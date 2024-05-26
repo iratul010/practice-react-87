@@ -5,7 +5,7 @@ import About from "../pages/About";
 import Login from "../pages/Login";
 import ErrorPage from "../pages/ErrorPage";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../pages/Dashboard/DashboardHome";
  
 import Registration from "../pages/Registration";
 import PrivateRoutes from "./PrivateRoutes";
@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage/>,
     children: [
       {
-         path: "/dashboard",
+         index: true,
           element: <PrivateRoutes>
             <Dashboard />
           </PrivateRoutes> 

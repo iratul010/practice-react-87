@@ -6,6 +6,7 @@ import LoadingSpinner from "./LoadingSpinner";
 function Navbar() {
   const { user, logOut,loading } = useAuth();
 
+  const [confirmLogout, setConfirmLogout] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [onlineUser, setOnlineUser] = useState(null);
 
@@ -22,9 +23,18 @@ function Navbar() {
       });
     }
   }, [user]);
-const handleLogOut = async()=>{
-  await   logOut();
-}
+
+  const handleLogOut = async () => {
+    if (confirmLogout) {
+      await logOut();
+      setConfirmLogout(false); // Reset confirmation state after logout
+    } else {
+      const confirmed = window.confirm("Are you sure you want to log out?");
+      if (confirmed) {
+        setConfirmLogout(true); // Set confirmation state to true to proceed with logout
+      }
+    }
+  };
 if(loading){
   return <LoadingSpinner/>
 }
