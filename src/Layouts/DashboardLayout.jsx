@@ -58,13 +58,13 @@ const Drawer = () => {
   }
 
   return (
-    <div className="relative h-screen flex overflow-hidden">
+    <div className="relative  flex overflow-hidden">
       {/* Open Drawer Button */}
       {!isOpen && (
         <button
           ref={openButtonRef}
           onClick={toggleDrawer}
-          className="fixed top-4 left-4 z-10 p-2 bg-blue-600 text-white rounded-full "
+          className="fixed top-4 left-4 z-10 p-2 bg-blue-600 text-white rounded lg:w-[220px] xxl:w-[220px] sm:w-[140px]  md:w-[220px]"
         >
           Open Drawer
         </button>
@@ -119,7 +119,7 @@ const Drawer = () => {
                 </li>
                 <li className="mb-2">
                 <NavLink
-                    to="/dashboard/edit-recipe"
+                    to="/dashboard/recipe-maintain"
                     className="btn p-2 rounded hover:bg-slate-600 w-full"
                     style={({ isActive,  isTransitioning }) => {
                       return {
@@ -130,12 +130,12 @@ const Drawer = () => {
                       };
                     }}
                   >
-                   Edit Recipe
+                  Recipe Maintenance
                   </NavLink>
                 </li>
                 <li className="mb-2">
                 <NavLink
-                    to="/dashboard/delete-recipe"
+                    to="/dashboard/add-recipe"
                     className="btn p-2 rounded hover:bg-slate-600 w-full"
                     style={({ isActive,  isTransitioning }) => {
                       return {

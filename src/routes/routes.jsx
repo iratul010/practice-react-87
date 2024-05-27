@@ -11,8 +11,9 @@ import Registration from "../pages/Registration";
 import PrivateRoutes from "./PrivateRoutes";
 import Products from "../pages/Products";
 import MangeAllRecipe from "../pages/Dashboard/MangeAllRecipe";
-import EditRecipe from "../pages/Dashboard/EditRecipe";
-import DeleteRecipe from "../pages/Dashboard/DeleteRecipe";
+ 
+import RecipeMaintenance from "../pages/Dashboard/RecipeMaintenance";
+import AddRecipe from "../pages/Dashboard/AddRecipe";
 
 export const router = createBrowserRouter([
   {
@@ -61,18 +62,20 @@ export const router = createBrowserRouter([
         }
         ,
         {
-          path: 'edit-recipe',
+          path: 'recipe-maintain',
           element: <PrivateRoutes>
-            <EditRecipe/>
+            <RecipeMaintenance/>
           </PrivateRoutes>
         }
         ,
         {
-          path: 'delete-recipe',
+          path: 'add-recipe',
           element: <PrivateRoutes>
-            <DeleteRecipe/>
+            <AddRecipe/>
           </PrivateRoutes>
         }
+        ,
+       
      
     ],
   },
