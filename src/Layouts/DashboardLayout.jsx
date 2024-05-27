@@ -1,16 +1,16 @@
-import  { useState, useEffect, useRef } from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
-import LoadingSpinner from '../components/LoadingSpinner';
-
+import { useState, useEffect, useRef } from "react";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import LoadingSpinner from "../components/LoadingSpinner";
+import CgProfile from "../assets/profile.png";
 const Drawer = () => {
-  const { logOut, loading } = useAuth();
+  const { user, logOut, loading } = useAuth();
   const [confirmLogout, setConfirmLogout] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const drawerRef = useRef(null);
   const openButtonRef = useRef(null);
   const mainContentRef = useRef(null);
-
+  console.log(user);
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
   };
@@ -27,11 +27,11 @@ const Drawer = () => {
         setIsOpen(false);
       }
     };
-  
-    document.addEventListener('click', handleClickOutsideDrawer);
-  
+
+    document.addEventListener("click", handleClickOutsideDrawer);
+
     return () => {
-      document.removeEventListener('click', handleClickOutsideDrawer);
+      document.removeEventListener("click", handleClickOutsideDrawer);
     };
   }, [isOpen]);
 
@@ -63,8 +63,8 @@ const Drawer = () => {
       {!isOpen && (
         <button
           ref={openButtonRef}
-          className="fixed top-4 left-4 z-10 p-2 bg-blue-600 text-white rounded-full"
           onClick={toggleDrawer}
+          className="fixed top-4 left-4 z-10 p-2 bg-blue-600 text-white rounded-full "
         >
           Open Drawer
         </button>
@@ -74,25 +74,97 @@ const Drawer = () => {
       <div
         ref={drawerRef}
         className={`fixed top-0 left-0 h-full bg-gray-800 text-white w-full md:w-64 transform transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+          isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
           <div className="flex-grow p-4">
-            <h2 className="text-2xl font-bold mb-4">Menu</h2>
             <nav>
+              <div className="flex flex-col h-full">
+                <div className="flex-grow">
+                  <h2 className="text-2xl font-bold mb-4">Profile</h2>
+                  <div className="avatar online left-10 w-[100px]">
+                    {user ? (
+                      <div className="w-24 rounded-full">
+                        <img src={user?.photoURL} />
+                      </div>
+                    ) : (
+                      <img src={CgProfile} className="" />
+                    )}
+                  </div>
+
+                  <div className="mb-4">
+                    <p>Name: {user?.displayName}</p>
+                    <p>Email: {user?.email}</p>
+                  </div>
+                  <h2 className="text-2xl font-bold mb-4">Menu</h2>
+                </div>
+              </div>
               <ul>
-                <li className="mb-2  p-2 rounded hover:bg-slate-600 "><a href="#home">All Recipe</a></li>
-                <li className="mb-2 p-2 rounded hover:bg-slate-600"><a href="#profile">Edit</a></li>
-                <li className="mb-2 p-2 rounded hover:bg-slate-600"><a href="#settings">Settings</a></li>
+                <li className="mb-2">
+                  <NavLink
+                    to="/dashboard/all-recipe"
+                    className="btn p-2 rounded hover:bg-slate-600 w-full"
+                    style={({ isActive,  isTransitioning }) => {
+                      return {
+                        fontWeight: isActive ? "bold" : "",
+                        color:isActive? 'white':'black',
+                        backgroundColor: isActive?'rgb(234,88,12)':'',
+                        viewTransitionName: isTransitioning ? "slide" : "",
+                      };
+                    }}
+                  >
+                    All Recipe
+                  </NavLink>
+                </li>
+                <li className="mb-2">
+                <NavLink
+                    to="/dashboard/edit-recipe"
+                    className="btn p-2 rounded hover:bg-slate-600 w-full"
+                    style={({ isActive,  isTransitioning }) => {
+                      return {
+                        fontWeight: isActive ? "bold" : "",
+                        color:isActive? 'white':'black',
+                        backgroundColor: isActive?'rgb(234,88,12)':'',
+                        viewTransitionName: isTransitioning ? "slide" : "",
+                      };
+                    }}
+                  >
+                   Edit Recipe
+                  </NavLink>
+                </li>
+                <li className="mb-2">
+                <NavLink
+                    to="/dashboard/delete-recipe"
+                    className="btn p-2 rounded hover:bg-slate-600 w-full"
+                    style={({ isActive,  isTransitioning }) => {
+                      return {
+                        fontWeight: isActive ? "bold" : "",
+                        color:isActive? 'white':'black',
+                        backgroundColor: isActive?'rgb(234,88,12)':'',
+                        viewTransitionName: isTransitioning ? "slide" : "",
+                      };
+                    }}
+                  >
+                   Delete Recipe
+                  </NavLink>
+                </li>
               </ul>
             </nav>
           </div>
           <div className="p-4">
-            <Link onClick={handleLogOut} className="btn w-full py-2 mb-2 bg-red-600 hover:bg-red-700 rounded text-white border-orange-500">
-            Logout
+            <button
+              onClick={handleLogOut}
+              className="btn w-full py-2 mb-2 bg-red-600 hover:bg-red-700 rounded text-white"
+            >
+              Logout
+            </button>
+            <Link
+              to="/"
+              className="btn bg-green-600 w-full py-2 hover:bg-green-700 rounded text-white"
+            >
+              Home
             </Link>
-            <Link to='/' className=" btn bg-green-600 w-full py-2   hover:bg-green-700 rounded text-white border-orange-500">Home</Link>
           </div>
         </div>
       </div>
@@ -101,12 +173,17 @@ const Drawer = () => {
       <div
         ref={mainContentRef}
         className={`flex-grow bg-gray-100 p-8 ${
-          isOpen ? 'ml-64' : 'ml-0'
+          isOpen ? "ml-64" : "ml-0"
         } md:ml-64`}
         onClick={handleMainContentClick}
       >
         <Outlet />
       </div>
+
+      {/* Right Side Profile Section */}
+      {/* <div className="fixed top-0 right-0 h-full bg-gray-800 text-white w-full md:w-64 p-4">
+      
+      </div> */}
     </div>
   );
 };

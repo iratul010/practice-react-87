@@ -10,6 +10,9 @@ import Dashboard from "../pages/Dashboard/DashboardHome";
 import Registration from "../pages/Registration";
 import PrivateRoutes from "./PrivateRoutes";
 import Products from "../pages/Products";
+import MangeAllRecipe from "../pages/Dashboard/MangeAllRecipe";
+import EditRecipe from "../pages/Dashboard/EditRecipe";
+import DeleteRecipe from "../pages/Dashboard/DeleteRecipe";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +43,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: "/dashboard",
     element: <DashboardLayout />,
     errorElement: <ErrorPage/>,
     children: [
@@ -50,6 +53,26 @@ export const router = createBrowserRouter([
             <Dashboard />
           </PrivateRoutes> 
         },
+        {
+          path: 'all-recipe',
+          element: <PrivateRoutes>
+            <MangeAllRecipe/>
+          </PrivateRoutes>
+        }
+        ,
+        {
+          path: 'edit-recipe',
+          element: <PrivateRoutes>
+            <EditRecipe/>
+          </PrivateRoutes>
+        }
+        ,
+        {
+          path: 'delete-recipe',
+          element: <PrivateRoutes>
+            <DeleteRecipe/>
+          </PrivateRoutes>
+        }
      
     ],
   },

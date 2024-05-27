@@ -4,6 +4,7 @@ import About from "./About";
 import Products from "./Products";
  
 function Home() {
+ 
   return (
     <div className="  bg-zinc-800"  >
   
