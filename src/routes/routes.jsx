@@ -5,7 +5,7 @@ import About from "../pages/About";
 import Login from "../pages/Login";
 import ErrorPage from "../pages/ErrorPage";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import Dashboard from "../pages/Dashboard/DashboardHome";
+ 
  
 import Registration from "../pages/Registration";
 import PrivateRoutes from "./PrivateRoutes";
@@ -14,6 +14,7 @@ import MangeAllRecipe from "../pages/Dashboard/MangeAllRecipe";
  
 import RecipeMaintenance from "../pages/Dashboard/RecipeMaintenance";
 import AddRecipe from "../pages/Dashboard/AddRecipe";
+import EditRecipe from "../pages/Dashboard/EditRecipe";
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +52,7 @@ export const router = createBrowserRouter([
       {
          index: true,
           element: <PrivateRoutes>
-            <Dashboard />
+              <MangeAllRecipe/>
           </PrivateRoutes> 
         },
         {
@@ -72,6 +73,13 @@ export const router = createBrowserRouter([
           path: 'add-recipe',
           element: <PrivateRoutes>
             <AddRecipe/>
+          </PrivateRoutes>
+        }
+        ,
+        {
+          path: 'edit-recipe/:id',
+          element: <PrivateRoutes>
+            <EditRecipe/>
           </PrivateRoutes>
         }
         ,

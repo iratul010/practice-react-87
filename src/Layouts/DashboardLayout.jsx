@@ -1,16 +1,18 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import LoadingSpinner from "../components/LoadingSpinner";
 import CgProfile from "../assets/profile.png";
 const Drawer = () => {
+  const navigate =useNavigate()
   const { user, logOut, loading } = useAuth();
-  const [confirmLogout, setConfirmLogout] = useState(false);
+ 
   const [isOpen, setIsOpen] = useState(false);
   const drawerRef = useRef(null);
   const openButtonRef = useRef(null);
   const mainContentRef = useRef(null);
-  console.log(user);
+ 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
   };
@@ -42,15 +44,13 @@ const Drawer = () => {
   };
 
   const handleLogOut = async () => {
-    if (confirmLogout) {
+    const confirmed = window.confirm("Are you sure you want to log out?");
+    if (confirmed) {
       await logOut();
-      setConfirmLogout(false); // Reset confirmation state after logout
-    } else {
-      const confirmed = window.confirm("Are you sure you want to log out?");
-      if (confirmed) {
-        setConfirmLogout(true); // Set confirmation state to true to proceed with logout
-      }
-    }
+      navigate('/')
+ 
+    }  
+    return
   };
 
   if (loading) {
@@ -146,7 +146,7 @@ const Drawer = () => {
                       };
                     }}
                   >
-                   Delete Recipe
+                   Add Recipe
                   </NavLink>
                 </li>
               </ul>

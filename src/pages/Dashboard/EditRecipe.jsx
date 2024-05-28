@@ -1,81 +1,89 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-const AddRecipe = () => {
-  const [recepieState, setRecipeState] = useState([]);
+import { useNavigate, useParams } from "react-router-dom";
+const EditRecipe = () => {
+  const navigate = useNavigate()
+  const { id } = useParams();
+  
+  const [categoriesState, setCategoriesState] = useState([]);
+  const [singleRecipe, setSingleRecipe] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
-    async function recipeFunc() {
-      const data = await axios.get("http://localhost:3001/recipes");
-   
-      if(data?.status===200){
+    // Set the initial selected category
+    if (singleRecipe.id === id) {
+      setSelectedCategory(singleRecipe.category);
+    }
+  }, [singleRecipe, id]);
+ 
 
-        setRecipeState(data.data);
+  useEffect(() => {
+    async function singleRecipeFunc() {
+      const singleData = await axios.get(`http://localhost:3001/recipes/${id}`);
+
+      if (singleData?.status === 200) {
+        setSingleRecipe(singleData.data);
       }
     }
 
-    recipeFunc();
-  }, []);
-  const [categoriesState, setCategoriesState] = useState([]);
+    singleRecipeFunc();
+  }, [id]);
 
   useEffect(() => {
     async function categoriesFunc() {
       const data = await axios.get("http://localhost:3001/categories");
-    
-      if(data?.status===200){
 
+      if (data?.status === 200) {
         setCategoriesState(data.data);
       }
     }
 
     categoriesFunc();
   }, []);
- console.log(categoriesState)
-  const [formData, setFormData] = useState({
-    id: '',
-    title: "",
-    price: "",
-    description: "",
-    image: "",
-    category: "",
-  });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    console.log('name',name,'value',value)
-    setFormData({ ...formData, [name]: value,id: recepieState.length+1 });
-    
-  };
+ 
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you can perform any action with the form data
+
     setIsModalOpen(true);
-   await axios.post('http://localhost:3001/recipes',formData)
+    const title = e.target.title.value
+    const price = e.target.price.value
+    const description = e.target.description.value
+    const image = e.target.image.value
+    const category = e.target.category.value
     
+    
+  
+      async function  updateFunc (){
+        await axios.patch(`http://localhost:3001/recipes/${id}`,{title,price,description,image,category})
+      }
+      
+      updateFunc()
+    navigate('/dashboard/recipe-maintain')
+   
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
  
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Add New Recipe</h2>
 
       <form onSubmit={handleSubmit}>
-       
-
         <label className="block mb-2">
           Title:
           <input
             type="text"
             name="title"
-            value={formData.title}
-            onChange={handleChange}
-            className="block  w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            
+            defaultValue={singleRecipe?.title}
+            className="block text-slate-900  w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
         </label>
 
@@ -84,8 +92,8 @@ const AddRecipe = () => {
           <input
             type="number"
             name="price"
-            value={formData.price}
-            onChange={handleChange}
+            
+            defaultValue={singleRecipe?.price}
             className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
         </label>
@@ -94,8 +102,8 @@ const AddRecipe = () => {
           Description:
           <textarea
             name="description"
-            value={formData.description}
-            onChange={handleChange}
+            
+            defaultValue={singleRecipe?.description}
             className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           ></textarea>
         </label>
@@ -105,8 +113,8 @@ const AddRecipe = () => {
           <input
             type="text"
             name="image"
-            value={formData.image}
-            onChange={handleChange}
+            
+            defaultValue={singleRecipe?.image}
             className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
         </label>
@@ -116,14 +124,15 @@ const AddRecipe = () => {
           <select
             type="text"
             name="category"
-             
-               
-            onChange={handleChange}
+            value={selectedCategory?.title}
+            
             className="block w-full my-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-4"
           >
-            {
-              categoriesState.map(category=> <option  key={category?.id}value={category?.title}>{category?.title}</option>)
-            }
+            {categoriesState.map((category) => (
+              <option key={category?.title} >
+                {category?.title}
+              </option>
+            ))}
           </select>
         </label>
 
@@ -153,4 +162,4 @@ const AddRecipe = () => {
   );
 };
 
-export default AddRecipe;
+export default EditRecipe;

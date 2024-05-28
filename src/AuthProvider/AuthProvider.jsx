@@ -33,8 +33,12 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const logOut = async() => {
-    return await signOut(auth).then(()=>setUser(null));
+  const logOut = async () => {
+    setLoading(true);
+    return signOut(auth).finally(() => {
+      setUser(null);
+      setLoading(false);
+    });
   };
   //current user check
   useEffect(() => {

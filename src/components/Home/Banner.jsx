@@ -1,4 +1,13 @@
+import { Link } from "react-router-dom";
+
 function Banner() {
+  const scrollToSection = (e) => {
+    e.preventDefault();
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div
       className="hero h-[100vh] w-[100%]"
@@ -20,7 +29,7 @@ function Banner() {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <button className="btn bg-orange-600 hover:bg-orange-500 text-white">Get Started</button>
+          <Link   onClick={scrollToSection} className="btn bg-orange-600 hover:bg-orange-500 text-white">Get Started</Link>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import LoadingSpinner from "./LoadingSpinner";
 function Navbar() {
   const { user, logOut,loading } = useAuth();
 
-  const [confirmLogout, setConfirmLogout] = useState(false);
+ 
   // eslint-disable-next-line no-unused-vars
   const [onlineUser, setOnlineUser] = useState(null);
 
@@ -25,15 +25,12 @@ function Navbar() {
   }, [user]);
 
   const handleLogOut = async () => {
-    if (confirmLogout) {
+    const confirmed = window.confirm("Are you sure you want to log out?");
+    if (confirmed) {
       await logOut();
-      setConfirmLogout(false); // Reset confirmation state after logout
-    } else {
-      const confirmed = window.confirm("Are you sure you want to log out?");
-      if (confirmed) {
-        setConfirmLogout(true); // Set confirmation state to true to proceed with logout
-      }
-    }
+      
+    }  
+    return
   };
 if(loading){
   return <LoadingSpinner/>
@@ -83,7 +80,7 @@ if(loading){
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to="/" className="btn btn-ghost text-xl">Food Recipe</Link>
       </div>
       <div className="navbar-center hidden lg:flex ">
         <ul className="menu menu-horizontal px-1  ">

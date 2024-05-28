@@ -28,7 +28,7 @@ const Registration = () => {
 
     if (password === confirm_password) {
       await createUser(email, password);
-      console.log(user);
+  
     }
   };
   useEffect(() => {
